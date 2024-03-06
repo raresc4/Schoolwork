@@ -65,11 +65,13 @@ int precedenta(char a,char b)
 void conversie()
 {
   int c=0;
+  char forma[100];
+  int i=0;
   while((c = getchar()) != EOF)
     {
-      if(isalpha(c))
+      if(isdigit(c))
 	{
-	  printf("%c",c);
+	  forma[i++] = c;
 	}
       else
 	{
@@ -83,12 +85,12 @@ void conversie()
 		{
 		  while(stiva[top] != '(')
 		    {
-		      printf("%c",pop());
 		      if(top == -1)
 			{
 			  printf("forma e gresita\n");
 			  return;
 			}
+		      forma[i++] = pop();
 		    }
 		  pop();
 		}
@@ -98,7 +100,7 @@ void conversie()
 		    {
 		      while((stiva[top] == '+' || stiva[top] == '-' || stiva[top] == '*' || stiva[top] == '/') && (precedenta(c,stiva[top]) == 1) )
 			{
-			  printf("%c",pop());
+			  forma[i++] = pop();
 			}
 		      push(c);
 		    }
@@ -108,12 +110,17 @@ void conversie()
     }
   while(top != -1)
     {
-      printf("%c",pop());
+      forma[i++] = pop();
+    }
+  for(int j=0; j<i; j++)
+    {
+      printf("%c",forma[j]);
     }
 }
 
 
 int main(void)
 {
+  conversie();  
   return 0;
 }
