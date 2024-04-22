@@ -21,8 +21,6 @@ def shortenURL(nr):
     shortURL += l[::-1]
     return shortURL
 
-print(shortenURL(1000))
-
 shortenURLs = {}
 nrlongUrls = 0
 
